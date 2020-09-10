@@ -2,13 +2,14 @@
  * @Author: liujinyuan
  * @Date: 2020-09-09 16:22:17
  * @LastEditors: liujinyuan
- * @LastEditTime: 2020-09-10 15:42:22
+ * @LastEditTime: 2020-09-10 16:47:02
  * @FilePath: \map-transform\src\App.js
  */
 import React from 'react';
 import './App.css';
 import './base.css';
-import {chinaToBaidu,GPSToBaidu} from './transform'
+import transformMap from '../package/index';
+const {chinaToBaidu,GPSToBaidu} = transformMap;
 export default class App extends React.Component {
   constructor(props){
     super(props);
