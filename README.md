@@ -2,16 +2,16 @@
  * @Author: liujinyuan
  * @Date: 2020-09-09 16:22:17
  * @LastEditors: liujinyuan
- * @LastEditTime: 2020-09-10 17:50:06
+ * @LastEditTime: 2020-09-14 10:07:38
  * @FilePath: \map-transform\README.md
 -->
 ### 安装
 ```
-npm install map-transform
+npm install map-coordinate-transform
 ```
 or
 ```
-yarn add map-transform
+yarn add map-coordinate-transform
 ```
 
 ### 使用
