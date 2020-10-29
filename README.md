@@ -2,7 +2,7 @@
  * @Author: liujinyuan
  * @Date: 2020-09-09 16:22:17
  * @LastEditors: liujinyuan
- * @LastEditTime: 2020-09-14 10:07:38
+ * @LastEditTime: 2020-10-29 09:42:25
  * @FilePath: \map-transform\README.md
 -->
 ### 安装
@@ -33,6 +33,7 @@ const {chinaToBaidu,GPSToBaidu} = transformMap;
 | mercatorToGPS | lat,lng | 墨卡托坐标系转GPS坐标系 |
 | isOutOfChina | lat,lng | 判断是否在中国之外 |
 | distance | latA, lngA, latB, lngB | 计算两点之间的距离 |
+| countLng | lng | 计算lng操过+-180的实际位置 |
 `所有坐标点转换都判断了是否在中国之外。`
 
 ### 例子
