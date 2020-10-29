@@ -1,3 +1,10 @@
+/*
+ * @Author: liujinyuan
+ * @Date: 2020-09-10 16:30:05
+ * @LastEditors: liujinyuan
+ * @LastEditTime: 2020-10-29 09:27:54
+ * @FilePath: \map-transform\package\calculate.js
+ */
 export const PI = 3.14159265358979324;
 export const X_PI = 3.14159265358979324 * 3000.0 / 180.0;
 /**
@@ -6,11 +13,11 @@ export const X_PI = 3.14159265358979324 * 3000.0 / 180.0;
  * @param  {number} lng longitude
  * @return {boolean]} 
  */
-export const isOutOfChina = (lat,lng) => {
-    if (lng < 72.004 || lng > 137.8347){
+export const isOutOfChina = (lat, lng) => {
+    if (lng < 72.004 || lng > 137.8347) {
         return true;
     }
-    if (lat < 0.8293 || lat > 55.8271){
+    if (lat < 0.8293 || lat > 55.8271) {
         return true;
     }
     return false;
@@ -34,7 +41,7 @@ export const transformLat = (x, y) => {
  * @param {number} x longitude 
  * @param {number} y latitude
  */
-export const transformLng = (x, y) =>  {
+export const transformLng = (x, y) => {
     let ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
     ret += (20.0 * Math.sin(6.0 * x * PI) + 20.0 * Math.sin(2.0 * x * PI)) * 2.0 / 3.0;
     ret += (20.0 * Math.sin(x * PI) + 40.0 * Math.sin(x / 3.0 * PI)) * 2.0 / 3.0;
@@ -61,4 +68,30 @@ export const distance = (latA, lngA, latB, lngB) => {
     let alpha = Math.acos(s);
     let distance = alpha * earthR;
     return distance;
+}
+
+/**
+ * 对超过+180，-180的经度进行转换成正确的经度。
+ * @param {number} lng 经度
+ */
+export const countLng = (lng) => {
+    const numLngArr = String(lng).split('.');
+    let numLng = numLngArr[0];
+    const multiple = Math.floor(Number(numLngArr[0]) / 180);
+    if (lng > 180) {
+        if (multiple % 2 == 0) {
+            numLng = Number(numLngArr[0]) % 180;
+        } else {
+            numLng = Number(numLngArr[0]) % 180 - 180;
+        }
+    }
+    if (lng < -180) {
+        if (multiple % 2 != 0) {
+            numLng = Number(numLngArr[0]) % 180;
+        } else {
+            numLng = Number(numLngArr[0]) % 180 + 180;
+        }
+    }
+    let floatLng = Number(numLngArr[1]) || 0;
+    return Number(`${numLng}.${floatLng}`);
 }
